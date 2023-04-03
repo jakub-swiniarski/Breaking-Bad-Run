@@ -118,6 +118,8 @@ public class BBRun extends ApplicationAdapter {
 		if(hank.rect.x+hank.rect.width<=0){
 			hank.rect.x=1280+(int)(Math.random() * 500 + 500);
 		}
+
+		player.animation();
 	}
 	
 	@Override
@@ -130,5 +132,8 @@ public class BBRun extends ApplicationAdapter {
 		generator.dispose();
 		meth.img.dispose();
 		hank.img.dispose();
+		for(int i=0; i<4; i++){
+			player.walkingImg[i].dispose();
+		}
 	}
 }

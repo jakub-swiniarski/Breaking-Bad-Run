@@ -9,8 +9,15 @@ public class Player extends Entity{
     int state; //0-normal, 1-ascending, 2-descending
     public int score;
     public boolean canMove;
+    private int delay, frame;
+    public Texture[] walkingImg=new Texture[4];
     public Player(float x, float y){
-        img=new Texture(Gdx.files.internal("entities/player.png"));
+        img=new Texture(Gdx.files.internal("entities/player0.png"));
+        for(int i=0; i<4; i++){
+            walkingImg[i]=new Texture(Gdx.files.internal("entities/player"+i+".png"));
+        }
+        delay=0;
+        frame=0;
         rect.x=x;
         rect.y=y;
         state=0;
@@ -34,6 +41,15 @@ public class Player extends Entity{
             if(rect.y<=192f){
                 rect.y=192f;
                 state=0;
+            }
+        }
+    }
+    public void animation(){
+        if(state==0 && canMove){
+            delay++;
+            if(delay%3==0){
+                img=walkingImg[frame%4];
+                frame++;
             }
         }
     }
