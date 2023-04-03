@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Entity {
-    protected Rectangle rect;
+    public Rectangle rect;
     public Texture img;
 
     public Entity(){
