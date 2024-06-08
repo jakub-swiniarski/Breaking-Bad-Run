@@ -27,8 +27,6 @@ public class BBRun extends ApplicationAdapter {
 	int movingSpeed;
 	Music music;
 	Enemy hank;
-	Sound scream;
-	boolean played;
 
 	@Override
 	public void create () {
@@ -59,9 +57,6 @@ public class BBRun extends ApplicationAdapter {
 		music.setLooping(true);
 		music.setVolume(1f);
 		music.play();
-
-		scream = Gdx.audio.newSound(Gdx.files.internal("sounds/scream.mp3"));
-		played=false;
 	}
 
 	@Override
@@ -79,16 +74,11 @@ public class BBRun extends ApplicationAdapter {
 			hank.rect.x-=movingSpeed*Gdx.graphics.getDeltaTime();
 		}
 		else{
-			if(!played) {
-				scream.play(1.0f);
-				played=true;
-			}
 			music.stop();
 			font48.draw(batch, "GAME OVER", 480, 450);
 			font28.draw(batch, "PRESS R TO TRY AGAIN", 465, 350);
 			if(Gdx.input.isKeyJustPressed(Input.Keys.R)){
 				music.play();
-				played=false;
 				player= new Player(0f,192f);
 				hank=new Enemy();
 				sand=new Texture(Gdx.files.internal("world/sand.png"));
